@@ -1,0 +1,49 @@
+/*
+ * @Description: file content
+ * @Author: ZeT1an
+ * @Date: 2021-12-28 14:47:05
+ * @LastEditors: ZeT1an
+ * @LastEditTime: 2022-04-05 13:48:02
+ * @LastEditContent: 
+ */
+/**
+ * @description: 此函数用于，格式化播放量。
+ * @Author: ZeT1an
+ * @param {number} count 需要格式化的播放量数字
+ * @return {string} 格式化之后的播放量字符串。
+ */
+function formatCount(count) {
+	// 1.转成数字
+	var counter = parseInt(count)
+	if (counter > 100000000) {
+		return (counter / 100000000).toFixed(1) + '亿'
+	} else if (counter > 10000) {
+		return (counter / 10000).toFixed(1) + '万'
+	} else {
+		return counter + ''
+	}
+}
+
+/**
+ * @description: 此函数用于，格式化播放时间。
+ * @Author: ZeT1an
+ * @param {number} duration 需要格式化的播放时间（ms）
+ * @return {string} 格式化之后的播放时间字符串。
+ */
+function formatDuration(duration) {
+	duration = duration / 1000
+	var minute = Math.floor(duration / 60)
+	var second = Math.floor(duration) % 60
+	return padLeftZero(minute) + ':' + padLeftZero(second)
+}
+
+function padLeftZero(time) {
+	time = time + ""
+	var length = time.length > 2 ? 2 : time.length
+	return ("00" + time).slice(length)
+}
+
+module.exports = {
+	formatCount: formatCount,
+	formatDuration: formatDuration
+}

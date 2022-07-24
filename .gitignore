@@ -1,0 +1,4 @@
+# 避免提交的文件夹
+miniprogram_npm
+node_modules
+.vscode
